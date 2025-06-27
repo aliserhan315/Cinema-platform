@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS films (
     trailer_url VARCHAR(255),
     poster_image VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    age_restriction INT,
+    age_restriction INT
 );";
 
 $execute = $mysqli->prepare($query);
