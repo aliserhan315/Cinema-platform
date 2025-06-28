@@ -9,6 +9,9 @@ class User extends Model {
     private ?string $date_of_birth;
     private ?string $profile_image;
     private string $created_at;
+    protected static string $tableName = "users";
+    protected static string $primaryKey = "id";
+    private array $genres = [];
 
         public function __construct(array $data) {
         $this->id = $data["id"];
@@ -86,8 +89,26 @@ class User extends Model {
             $this->date_of_birth,
             $this->profile_image,
             $this->created_at,
+            $this->genres
         ];
+
     }
+
+   public function loadGenres(mysqli $mysqli): void {
+    $sql = "SELECT genre_id FROM user_genres WHERE user_id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $this->id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $this->genres = [];
+    while ($row = $result->fetch_assoc()) {
+        $this->genres[] = (int) $row["genre_id"];
+    }
+}
+
+
+
 
 
 }

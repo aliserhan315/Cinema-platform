@@ -36,10 +36,39 @@ abstract class Model {
     }
 
     public function update(mysqli $mysqli,array $feilds){
+        $set=[];
+        $types = '';
+        $values = [];
+        foreach($feilds as $key => $value){
+            $set[] = "$key=?";
+            $types .= is_int($value) ? 'i' : 's';
+            $values[] = $value;
+        }
+        $types .= 'i';
+        $values[] = $this->{static::$primaryKey};
+        $sql = sprintf("UPDATE %s SET %s WHERE %s = ?", static::$table, implode(', ', $set), static::$primaryKey
+    );
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param($types, ...$values);
+        return $stmt->execute();
 
     }
      public function create(mysqli $mysqli,array $feilds){
 
+    $columns = implode(', ', array_keys($feilds)); 
+    $placeholders = implode(', ', array_fill(0, count($feilds), '?')); 
+    $types = '';
+    foreach ($feilds as $value) {
+        $types .= is_int($value) ? 'i' : 's';
+    }
+    $sql = sprintf("INSERT INTO %s (%s) VALUES (%s)", static::$table, $columns, $placeholders);
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param($types, ...array_values($feilds));
+    if ($stmt->execute()) {
+        $flds[static::$primaryKey] = $mysqli->insert_id;
+        return new static($feilds);
+    }
+    return null;
     }
 
 
