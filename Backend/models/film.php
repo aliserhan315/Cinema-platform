@@ -11,7 +11,7 @@ class Film extends Model {
     private ?string $poster_image;
     private ?int $age_restriction;
     private ?string $rating;
-    protected static string $tableName = "films";
+    protected static string $table = "films";
     protected static string $primaryKey = "id";
 
     public function __construct(array $data) {

@@ -2,7 +2,7 @@
 require_once("Model.php");
 
 class Payment extends Model {
-    protected static string $tableName = "payments";
+    protected static string $table = "payments";
     protected static string $primaryKey = "id";
 
     private int $id;
