@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Seats -Cinema App</title>
+  <link rel="stylesheet" href="../styles/seats.css" />
+</head>
+<body>
+  <div class="seat-main">
+    <h1>Select Your Seats</h1>
+    <div class="screen">Screen This Way</div>
+    <div class="seat-container" id="seatContainer">
+   
+    </div>
+    <div class="legend">
+      <div><span class="seat legend-available"></span> Available</div>
+      <div><span class="seat legend-selected"></span> Selected</div>
+      <div><span class="seat legend-booked"></span> Booked</div>
+    </div>
+    <div class="summary">
+      <span id="count">0</span> Seats | ₹<span id="total">0</span>
+      <button id="confirmBtn" class="btn-confirm">Confirm</button>
+    </div>
+  </div>
+  <script src="../javascripts/seats.js"></script>
+</body>
+</html>

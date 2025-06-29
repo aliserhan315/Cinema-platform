@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+          <title>Cenima App</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script >
+    
+             const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+                if(isLoggedIn) {
+                   window.location.href = "./pages/home.html";
+                 } else{
+                    window.location.href = "./pages/login.html";
+                   }
+                
+            
+        </script>
+
+    </head>
+    <body>
+        <h1>Welcome to Cinema App</h1>
+        <p>Redirecting...</p>
+        </body>
+        </html>
+        

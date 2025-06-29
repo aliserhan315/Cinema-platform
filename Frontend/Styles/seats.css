@@ -1,0 +1,78 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #141414;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+.seat-main {
+  background: #222;
+  padding: 2rem;
+  border-radius: 6px;
+  max-width: 500px;
+  width: 100%;
+}
+.seat-main h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+.screen {
+  background: #333;
+  height: 30px;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+.seat-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.seat {
+  width: 30px;
+  height: 30px;
+  background: #444;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.seat.booked { background: #666; cursor: not-allowed; }
+.seat.selected { background: #e50914; }
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.legend .seat { margin-right: 0.25rem; }
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-confirm {
+  background: #e50914;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-confirm:hover { background: #f6121d; }
+
+@media (max-width: 480px) {
+  .seat-container { 
+    grid-template-columns: repeat(auto-fill, minmax(25px, 1fr)); 
+}
+  .seat { 
+    width: 25px; 
+    height: 25px; }
+}
