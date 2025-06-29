@@ -2,7 +2,7 @@
 require_once("Model.php");
 
 class Genre extends Model {
-    protected static string $tableName = "genres";
+    protected static string $table = "genres";
     protected static string $primaryKey = "id";
 
     private int $id;

@@ -1,7 +1,7 @@
 <?php
 require_once("Model.php");
 class showTime extends Model {
-    protected static string $tableName = "show_times";
+    protected static string $table = "show_times";
     protected static string $primaryKey = "id";
     private int $id;
     private int $film_id;

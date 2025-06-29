@@ -1,5 +1,18 @@
 import { fetchFilms } from "./api.js";
 
+
+async function loadMovies() {
+  const response = await fetchFilms();
+  if (response.status === 200) {
+    const movies = response.films;
+    console.log(movies); 
+  } else {
+    console.error("Failed to fetch movies");
+  }
+}
+
+loadMovies();
+
 const grid = document.querySelector(".movie-grid");
 const search = document.getElementById("searchInput");
 let films = [];

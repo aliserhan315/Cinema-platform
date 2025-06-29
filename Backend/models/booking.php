@@ -1,7 +1,7 @@
 <?php
 require_once("Model.php");
 class Booking extends Model {
-    protected static string $tableName = "bookings";
+    protected static string $table = "bookings";
     protected static string $primaryKey = "id";
 
     private int $id;

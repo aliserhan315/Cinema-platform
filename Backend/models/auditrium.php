@@ -1,7 +1,7 @@
 <?php
 require_once("Model.php");
 class Auditorium extends Model {
-    protected static string $tableName = "auditoriums";
+    protected static string $table = "auditoriums";
     protected static string $primaryKey = "id";
 
     private int $id;

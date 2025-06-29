@@ -9,7 +9,7 @@ class User extends Model {
     private ?string $date_of_birth;
     private ?string $profile_image;
     private string $created_at;
-    protected static string $tableName = "users";
+    protected static string $table = "users";
     protected static string $primaryKey = "id";
     private array $genres = [];
 

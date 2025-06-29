@@ -54,8 +54,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
-  width: 25dvw;
-  height: 20dvw;
+
 }
 .movie-card:hover {
   transform: scale(1.05);

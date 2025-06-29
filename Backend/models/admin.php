@@ -6,7 +6,7 @@ class Admin extends Model {
     private string $email;
     private string $password;
     private string $created_at;
-    protected static string $tableName = "admins";
+    protected static string $table = "admins";
     protected static string $primaryKey = "id";
 
     public function __construct(array $data) {
