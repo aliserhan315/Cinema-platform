@@ -1,6 +1,6 @@
 <?php
-require_once("Model.php");
-require_once("User.php");
+require_once("../connection/connection.php");
+require_once("../models/User.php");
 $data = json_decode(file_get_contents("php://input"), true);
 $response = [];
 
@@ -22,12 +22,12 @@ VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param(
     "ssssss",
-    $fields["name"],
-    $fields["email"],
-    $fields["password"],
-    $fields["mobile"],
-    $fields["date_of_birth"],
-    $fields["profile_image"]
+    $name,
+    $email,
+    $password, 
+    $mobile,
+    $date_of_birth,
+    $profile_image
 );
 if ($stmt->execute()) {
     $user_id = $stmt->insert_id;
