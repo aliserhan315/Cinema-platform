@@ -1,4 +1,7 @@
 <?php
+
+header("Content-Type: application/json"); 
+
 require_once("../connection/connection.php");
 require_once("../models/User.php");
 $data = json_decode(file_get_contents("php://input"), true);
@@ -17,20 +20,9 @@ $fields = [
     "date_of_birth" => $data["date_of_birth"] ?? null,
     "profile_image" => $data["profile_image"] ?? null,
 ];
-$sql = "INSERT INTO users (name, email, password, mobile, date_of_birth, profile_image) 
-VALUES (?, ?, ?, ?, ?, ?)";
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param(
-    "ssssss",
-    $name,
-    $email,
-    $password, 
-    $mobile,
-    $date_of_birth,
-    $profile_image
-);
-if ($stmt->execute()) {
-    $user_id = $stmt->insert_id;
+$user = user::create($mysqli, $fields);
+if ($user) {
+    $user_id = $user->getId();
 
     if (isset($data["genres"]) && is_array($data["genres"])) {
         foreach ($data["genres"] as $genre_id) {
@@ -40,7 +32,11 @@ if ($stmt->execute()) {
         }
     }
 
-    echo json_encode(["status" => 201, "message" => "User created", "user_id" => $user_id]);
+    echo json_encode([
+        "status" => 201,
+        "message" => "User created",
+        "user" => $user->toArray()
+    ]);
 } else {
     echo json_encode(["status" => 500, "error" => "Failed to create user"]);
 }

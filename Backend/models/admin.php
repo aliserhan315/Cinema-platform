@@ -50,7 +50,15 @@ class Admin extends Model {
           $this->created_at
         ];
     }
-
+public static function findByEmail(mysqli $mysqli, string $email): ?Admin {
+    $sql = "SELECT * FROM " . static::$table . " WHERE email = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    return $data ? new static($data) : null;
+}
 
 
 }

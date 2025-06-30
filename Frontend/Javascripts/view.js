@@ -12,9 +12,9 @@ import { fetchFilms } from "./api.js";
   document.getElementById("poster").src = f[4];
   document.getElementById("title").textContent = f[1];
   document.getElementById("description").textContent = f[2] || '';
-
   document.getElementById("bookBtn").onclick = () => {
-    localStorage.setItem("selectedFilmId", id);
-    window.location.href = "seats.html";
+  localStorage.setItem("selectedFilmId", id);
+  window.location.href = "../pages/seat.html";
   };
-})();
+  
+});

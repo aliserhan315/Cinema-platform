@@ -34,14 +34,14 @@ function render(arr) {
     const card = document.createElement("div");
     card.className = "movie-card";
     card.innerHTML = `
-      <img src="${f[4]}" class="movie-poster" alt="${f[1]}">
+      <img src="${f.posterimage}" class="movie-poster" alt="${f.title}">
       <div class="movie-info">
-        <h3 class="movie-title">${f[1]}</h3>
-        <p class="movie-desc">${f[2] || ''}</p>
+        <h3 class="movie-title">${f.title}</h3>
+        <p class="movie-desc">${f.description || ''}</p>
       </div>`;
     card.onclick = () => {
-      localStorage.setItem("selectedFilmId", f[0]);
-      window.location.href = "view.html";
+      localStorage.setItem("selectedFilmId", f.id);
+      window.location.href = "../pages/filmVeiw.html";
     };
     grid.appendChild(card);
   });

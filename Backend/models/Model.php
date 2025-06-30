@@ -35,11 +35,11 @@ abstract class Model {
         return $stmt->execute();
     }
 
-    public function update(mysqli $mysqli,array $feilds){
+    public function update(mysqli $mysqli,array $fields){
         $set=[];
         $types = '';
         $values = [];
-        foreach($feilds as $key => $value){
+        foreach($fields as $key => $value){
             $set[] = "$key=?";
             $types .= is_int($value) ? 'i' : 's';
             $values[] = $value;
@@ -53,20 +53,20 @@ abstract class Model {
         return $stmt->execute();
 
     }
-     public function create(mysqli $mysqli,array $feilds){
+     public static function create(mysqli $mysqli,array $fields){
 
-    $columns = implode(', ', array_keys($feilds)); 
-    $placeholders = implode(', ', array_fill(0, count($feilds), '?')); 
+    $columns = implode(', ', array_keys($fields)); 
+    $placeholders = implode(', ', array_fill(0, count($fields), '?')); 
     $types = '';
-    foreach ($feilds as $value) {
+    foreach ($fields as $value) {
         $types .= is_int($value) ? 'i' : 's';
     }
     $sql = sprintf("INSERT INTO %s (%s) VALUES (%s)", static::$table, $columns, $placeholders);
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param($types, ...array_values($feilds));
+    $stmt->bind_param($types, ...array_values($fields));
     if ($stmt->execute()) {
-        $flds[static::$primaryKey] = $mysqli->insert_id;
-        return new static($feilds);
+        $fields[static::$primaryKey] = $mysqli->insert_id;
+        return new static($fields);
     }
     return null;
     }
