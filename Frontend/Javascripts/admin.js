@@ -38,10 +38,12 @@ function render(arr) {
       <div class="movie-info">
         <h3 class="movie-title">${f.title}</h3>
         <p class="movie-desc">${f.description || ''}</p>
+        <p class="movie-date">Release Date: ${new Date(f.release_date).toLocaleDateString()}</p>
+        <p class="movie-duration">Duration: ${f.duration} min</p>
       </div>`;
     card.onclick = () => {
       localStorage.setItem("selectedFilmId", f.id);
-      window.location.href = "../pages/filmVeiw.html";
+      window.location.href = "../pages/editmovie.html";
     };
     grid.appendChild(card);
   });
@@ -57,6 +59,10 @@ search.addEventListener("input", e => {
 document.getElementById("logoutBtn").onclick = () => {
   localStorage.clear();
   window.location.href = "login.html";
+};
+document.getElementById("addMovieBtn").onclick = () => {
+  
+  window.location.href = "../pages/addmovie.html";
 };
 
 

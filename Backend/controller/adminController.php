@@ -16,15 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    
 
-    if (!isset($data["name"], $data["email"], $data["password"])) {
+    if (!isset($data["email"], $data["password"])) {
     http_response_code(400);
     echo json_encode(["error" => "Missing required fields"]);
     exit;
     }
 
-     $admin = Admin::findByEmail($mysqli, $data["email"]);
+    $admin = Admin::findByEmail($mysqli, $data["email"]);
 
- if (!$admin || !password_verify($data["password"], $admin->getPassword())) {
+ if (!$admin || $data["password"] !== $admin->getPassword()) {
         http_response_code(401);
         echo json_encode(["error" => "Invalid credentials"]);
         exit;

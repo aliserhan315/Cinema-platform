@@ -8,7 +8,7 @@ class User extends Model {
     private ?string $mobile;
     private ?string $date_of_birth;
     private ?string $profile_image;
-    private string $created_at;
+ 
     protected static string $table = "users";
     protected static string $primaryKey = "id";
     private array $genres = [];
@@ -21,7 +21,7 @@ class User extends Model {
         $this->mobile = $data["mobile"] ?? null;
         $this->date_of_birth = $data["date_of_birth"] ?? null;
         $this->profile_image = $data["profile_image"] ?? null;
-        $this->created_at = $data["created_at"];
+      
     }
 
     public function getId():int {
@@ -52,9 +52,7 @@ class User extends Model {
         return $this->profile_image;
     }
 
-    public function getCreatedAt(): string {
-        return $this->created_at;
-    }
+    
 
     public function setName(string $name){
         $this->name=$name;
@@ -88,7 +86,7 @@ class User extends Model {
     "mobile" => $this->mobile,
     "date_of_birth" => $this->date_of_birth,
     "profile_image" => $this->profile_image,
-    "created_at" => $this->created_at,
+
     "genres" => $this->genres
 ];
     }

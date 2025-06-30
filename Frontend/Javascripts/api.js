@@ -28,7 +28,7 @@ export async function adminLogin(email, password) {
 }
 
 export async function createUser(userData) {
-  return apiFetch("createUser.php", "POST", userData);
+  return apiFetch("createUser.php", userData);
 }
 
 export async function getUsers() {

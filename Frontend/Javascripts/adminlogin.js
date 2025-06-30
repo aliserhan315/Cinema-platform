@@ -8,22 +8,22 @@ adminLoginForm.addEventListener("submit", async (e) => {
   const email = e.target.adminEmail.value.trim();
   const password = e.target.adminPassword.value.trim();
   const errorElem = document.getElementById("adminLoginError");
-  errorElem.textContent = "";
+
 
   try {
     const res = await adminLogin(email, password);
     if (res.status === 200) {
-      localStorage.setItem("adminLoggedIn", "true");
-      localStorage.setItem("adminToken", res.token); 
+      localStorage.setItem("adminLoggedIn", "true"); 
       localStorage.setItem("adminId", res.admin.id);
       localStorage.setItem("adminName", res.admin.name);
 
    
       window.location.href = "admin.html";
     } else {
-      errorElem.textContent = res.error || "Invalid credentials";
+       "Invalid credentials";
     }
-  } catch (err) {
-    errorElem.textContent = "Network error";
+  } catch (error) {
+    console.error("Login error:", error);
+    
   }
 });
