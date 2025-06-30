@@ -8,7 +8,7 @@ class User extends Model {
     private ?string $mobile;
     private ?string $date_of_birth;
     private ?string $profile_image;
-    private string $created_at;
+ 
     protected static string $table = "users";
     protected static string $primaryKey = "id";
     private array $genres = [];
@@ -21,7 +21,7 @@ class User extends Model {
         $this->mobile = $data["mobile"] ?? null;
         $this->date_of_birth = $data["date_of_birth"] ?? null;
         $this->profile_image = $data["profile_image"] ?? null;
-        $this->created_at = $data["created_at"];
+      
     }
 
     public function getId():int {
@@ -52,9 +52,7 @@ class User extends Model {
         return $this->profile_image;
     }
 
-    public function getCreatedAt(): string {
-        return $this->created_at;
-    }
+    
 
     public function setName(string $name){
         $this->name=$name;
@@ -80,18 +78,17 @@ class User extends Model {
         $this->profile_image = $profile_image;
     }
     public function toArray(){
-        return[
-            $this->id,
-            $this->name,
-            $this->email,
-            $this->password,
-            $this->mobile,
-            $this->date_of_birth,
-            $this->profile_image,
-            $this->created_at,
-            $this->genres
-        ];
+  return [
+    "id" => $this->id,
+    "name" => $this->name,
+    "email" => $this->email,
+    "password" => $this->password,
+    "mobile" => $this->mobile,
+    "date_of_birth" => $this->date_of_birth,
+    "profile_image" => $this->profile_image,
 
+    "genres" => $this->genres
+];
     }
 
    public function loadGenres(mysqli $mysqli): void {
@@ -105,6 +102,18 @@ class User extends Model {
     while ($row = $result->fetch_assoc()) {
         $this->genres[] = (int) $row["genre_id"];
     }
+}
+public static function findByEmail(mysqli $mysqli, string $email): ?User {
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    if ($data) {
+        return new User($data);
+    }
+    return null;
 }
 
 

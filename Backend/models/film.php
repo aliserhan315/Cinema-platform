@@ -87,16 +87,25 @@ class Film extends Model {
 
     public function toArray() {
         return [
-            $this->id,
-            $this->title,
-            $this->description,
-            $this->release_date,
-            $this->rating,
-            $this->duration,
-            $this->trailer_url,
-            $this->poster_image,
-            $this->created_at,
-            $this->age_restriction
+            "id" =>   $this->id,
+            "title"=> $this->title,
+            "description"=>$this->description,
+           "release_date"=> $this->release_date,
+            "rating" => $this->rating,
+        "duration" => $this->duration,
+          "trailer_url" =>  $this->trailer_url,
+          "poster_image"=>  $this->poster_image,
+          "created_at" =>  $this->created_at,
+           "age_restriction" =>  $this->age_restriction
         ];
     }
+    public static function findByName(mysqli $mysqli, string $name): ?Film {
+        $sql = "SELECT * FROM " . static::$table . " WHERE title = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
+        return $data ? new static($data) : null;
+}
 }

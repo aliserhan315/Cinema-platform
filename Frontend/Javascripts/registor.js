@@ -1,12 +1,12 @@
 import { createUser } from './api.js';
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
+const form = document.getElementById('registerForm');
+form.addEventListener('submit', async e => {
   e.preventDefault();
-  const name = e.target.name.value.trim();
-  const email = e.target.email.value.trim();
-  const password = e.target.password.value.trim();
-  const errorElem = document.getElementById('registerError');
-  errorElem.textContent = '';
+
+  const name     = document.getElementById('name').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
 
   try {
     const res = await createUser({ name, email, password });
@@ -14,10 +14,12 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
       alert('Registration successful!');
       window.location.href = 'login.html';
     } else {
-      errorElem.textContent = res.error;
+   
+      const { message } = await res.json();
+      alert(`Registration failed: ${message}`);
     }
   } catch (err) {
-    errorElem.textContent = 'Network error';
+    console.error(err);
+    alert('An unexpected error occurred. Please try again.');
   }
 });
-

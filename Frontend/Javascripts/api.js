@@ -20,7 +20,7 @@ async function apiFetch(path, method = "GET", body = null, token = null) {
 }
 
 export async function userLogin(email, password) {
-  return apiFetch("userController.php", "POST", { email, password });
+  return apiFetch("logIncontroller.php", "POST", { email, password });
 }
 
 export async function adminLogin(email, password) {
@@ -28,7 +28,7 @@ export async function adminLogin(email, password) {
 }
 
 export async function createUser(userData) {
-  return apiFetch("createUser.php", "POST", userData);
+  return apiFetch("createUser.php", userData);
 }
 
 export async function getUsers() {

@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/admin.css">
-    <h1>hello admin</h1>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Home</title>
+  <link rel="stylesheet" href="../Styles/admin.css" />
 </head>
+<body>
+  <header class="header">
+    <h1 class="logo">CinemaApp</h1>
+    <input type="text" id="searchInput" placeholder="Search movies..." class="search-bar" />
+    <button id="logoutBtn" class="btn-logout">Logout</button>
+  </header>
+  
+  <div class="movie-grid">
+    
+    <div id="movieGrid" class="grid"></div>
+  </div>
+  <div class="add-div">
+    <button id="addMovieBtn" class="btn-add-movie">Add Movie</button>
+
+  </div>
+  
+  <script type="module" src="../Javascripts/admin.js"></script>
+</body>
 </html>
