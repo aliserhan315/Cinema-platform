@@ -33,22 +33,21 @@ function render(arr) {
   arr.forEach(f => {
     const card = document.createElement("div");
     card.className = "movie-card";
+    card.style.backgroundImage = `url('${f.poster_image}')`;
     card.innerHTML = `
-      <img src="${f.poster_image}" class="movie-poster" alt="${f.title}">
       <div class="movie-info">
         <h3 class="movie-title">${f.title}</h3>
-        <p class="movie-desc">${f.description || ''}</p>
-        <p class="movie-date">Release Date: ${new Date(f.release_date).toLocaleDateString()}</p>
-        <p class="movie-duration">Duration: ${f.duration} min</p>
-      </div>`;
+       
+      </div>
+    `;
     card.onclick = () => {
       localStorage.setItem("selectedFilmId", f.id);
-      window.location.href = "../pages/editmovie.html";
+      window.location.href = "../pages/adminFilmView.html";
     };
     grid.appendChild(card);
   });
-  
 }
+  
 
 
 search.addEventListener("input", e => {

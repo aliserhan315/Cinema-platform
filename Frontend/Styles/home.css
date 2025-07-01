@@ -1,10 +1,14 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #141414;
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -12,15 +16,15 @@ body {
   padding: 1rem 2rem;
   background: #1f1f1f;
 }
+
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
 }
+
 .search-bar {
   flex: 1;
   margin: 0 2rem;
-}
-.search-bar {
   background: #333;
   color: #fafafa;
   border: none;
@@ -28,9 +32,11 @@ body {
   border-radius: 4px;
   font-size: 1rem;
 }
+
 .search-bar::placeholder {
   color: #aaa;
 }
+
 .btn-logout {
   background: #e50914;
   color: #fff;
@@ -39,6 +45,7 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .profile {
   background: #0099ff;
   color: #fff;
@@ -48,46 +55,70 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
+
 .btn-logout:hover {
   background: #f6121d;
 }
+
 .profile:hover {
   background: #007acc;
 }
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
   padding: 2rem;
 }
+
 .movie-card {
-  background: #474646;
+  position: relative;
+  width: 160px;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-.movie-card:hover {
-  transform: scale(1.05);
+
+.movie-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+  z-index: 0;
 }
-.movie-poster {
-  width: 100%;
-  display: block;
-}
+
 .movie-info {
+  position: relative;
+  z-index: 1;
   padding: 0.5rem;
+  width: 100%;
+  color: #fff;
 }
+
 .movie-title {
   margin: 0;
   font-size: 1rem;
   font-weight: bold;
 }
+
 .movie-desc {
-  font-size: 0.85rem;
-  color: #ccc;
-  height: 2.5rem;
+  font-size: 0.75rem;
+  color: #ddd;
+  margin-top: 0.25rem;
+  line-height: 1.2;
+  max-height: 2.4em;
   overflow: hidden;
+  text-overflow: ellipsis;
+
+
+  -webkit-box-orient: vertical;
 }
 
 @media (max-width: 600px) {
@@ -115,3 +146,6 @@ body {
   }
 }
 
+.movie-card:hover {
+  transform: scale(1.05);
+}
