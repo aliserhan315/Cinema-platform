@@ -33,19 +33,19 @@ function render(arr) {
   arr.forEach(f => {
     const card = document.createElement("div");
     card.className = "movie-card";
+    card.style.backgroundImage = `url('${f.poster_image}')`;
     card.innerHTML = `
-      <img src="${f.poster_image}" class="movie-poster" alt="${f.title}">
       <div class="movie-info">
         <h3 class="movie-title">${f.title}</h3>
-        <p class="movie-desc">${f.description || ''}</p>
-      </div>`;
+       
+      </div>
+    `;
     card.onclick = () => {
       localStorage.setItem("selectedFilmId", f.id);
-      window.location.href = "../pages/filmVeiw.html";
+      window.location.href = `../pages/filmVeiw.html?id=${f.id}`;
     };
     grid.appendChild(card);
   });
-  
 }
 
 
