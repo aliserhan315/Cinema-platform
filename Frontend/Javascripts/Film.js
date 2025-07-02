@@ -19,8 +19,8 @@ let allFilms = [];
 export async function loadAllFilms() {
   try {
     const response = await fetchFilms();
-    allFilms = response.films.map(createFilmObject); // stores all film objects
-    console.log("Loaded films:", allFilms);
+    allFilms = response.films.map(createFilmObject); 
+    return allFilms;
   } catch (err) {
     console.error("Failed to load films", err);
   }
