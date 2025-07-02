@@ -1,9 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Movie</title>
+  <link rel="stylesheet" href="../Styles/add-movie.css" />
+</head>
+<body>
+  <h1>Add Movie</h1>
 
+  <form id="addMovieForm">
+    <label>Title:
+        <input type="text" name="title" required />
+    </label><br />
+    <label>Description:
+        <textarea name="description"></textarea>
+    </label><br />
+    <label>Release Date:<br />
+        <input type="date" name="release_date" />
+    </label><br />
+    <label>Rating:
+        <input type="text" name="rating" />
+    </label><br />
+    <label>Duration (minutes):<br />
+        <input type="number" name="duration" />
+    </label><br />
+    <label>Trailer URL:<br />
+        <input type="url" name="trailer_url" />
+    </label><br />
+    <label>Poster Image URL:<br />
+        <input type="url" name="poster_image" />
+    </label><br />
+    <label>Background Image URL:<br />
+        <input type="url" name="background_image" />
+    </label><br />
+    <label>Age Restriction:<br />
+        <input type="number" name="age_restriction" min="0" />
+    </label><br />
+    <button type="submit">Add Movie</button>
+  </form>
+
+  <script type="module" src="add-movie.js"></script>
+</body>
 </html>

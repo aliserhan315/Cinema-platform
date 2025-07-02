@@ -1,10 +1,10 @@
 const API_BASE = "http://localhost/Projects/cinema-platform/Backend/controller";
 
-async function apiFetch(path, method = "GET", body = null, token = null) {
+async function apiFetch(path, method = "GET", body = null) {
   const headers = {
     "Content-Type": "application/json",
   };
-  if (token) headers["Authorization"] = `Bearer ${token}`;
+
 
   const response = await fetch(`${API_BASE}/${path}`, {
     method,
@@ -35,20 +35,20 @@ export async function getUsers() {
   return apiFetch("getUser.php", "GET");
 }
 
-export async function updateUser(userId, userData, token) {
-  return apiFetch(`userController.php?id=${userId}`, "PUT", userData, token);
+export async function updateUser(userId, userData ) {
+  return apiFetch(`userController.php?id=${userId}`, "PUT", userData );
 }
 
 export async function fetchFilms() {
   return apiFetch("filmController.php", "GET");
 }
 
-export async function createFilm(token, filmData) {
-  return apiFetch("filmController.php", "POST", filmData, token);
+export async function createFilm(filmData) {
+  return apiFetch("filmController.php", "POST", filmData );
 }
 
-export async function deleteFilm(token, filmId) {
-  return apiFetch(`filmController.php?id=${filmId}`, "DELETE", null, token);
+export async function deleteFilm(filmId) {
+  return apiFetch(`filmController.php?id=${filmId}`, "DELETE", null );
 }
 
 export async function getSeatLayout(showtimeId) {
@@ -58,22 +58,22 @@ export async function getSeatLayout(showtimeId) {
 export async function reserveSeats(bookingData) {
   return apiFetch("seatController.php", "POST", bookingData);
 }
-export async function getBookings(userId, token) {
-  return apiFetch(`bookingController.php?user_id=${userId}`, "GET", null, token);
+export async function getBookings(userId ) {
+  return apiFetch(`bookingController.php?user_id=${userId}`, "GET", null );
 }
-export async function createBooking(bookingData, token) {
-  return apiFetch("bookingController.php", "POST", bookingData, token);
+export async function createBooking(bookingData ) {
+  return apiFetch("bookingController.php", "POST", bookingData );
 }
-export async function deleteBooking(bookingId, token) {
-  return apiFetch(`bookingController.php?id=${bookingId}`, "DELETE", null, token);
+export async function deleteBooking(bookingId ) {
+  return apiFetch(`bookingController.php?id=${bookingId}`, "DELETE", null );
 }
 export async function getShowtimes(filmId) {
   return apiFetch(`showtimeController.php?film_id=${filmId}`, "GET");
 }
-export async function createShowtime(showtimeData, token) {
-  return apiFetch("showtimeController.php", "POST", showtimeData, token);
+export async function createShowtime(showtimeData ) {
+  return apiFetch("showtimeController.php", "POST", showtimeData );
 }
-export async function deleteShowtime(showtimeId, token) {
-  return apiFetch(`showtimeController.php?id=${showtimeId}`, "DELETE", null, token);
+export async function deleteShowtime(showtimeId ) {
+  return apiFetch(`showtimeController.php?id=${showtimeId}`, "DELETE", null );
 }
 
