@@ -18,6 +18,14 @@ class ResponseService {
             "message" => $message
         ]);
     }
-
-
+    //  public static function ServiceToArray($data) {
+    //     $results = [];
+    //     foreach($data as $c){
+    //         $results[] = $c->toArray();
+    //     }
+    //     return $results;
+    // }
 }
+
+
+

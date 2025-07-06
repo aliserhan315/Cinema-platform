@@ -24,7 +24,7 @@ export async function userLogin(email, password) {
 }
 
 export async function adminLogin(email, password) {
-  return apiFetch("adminController.php", "POST", { email, password });
+  return apiFetch("/admin", "POST", { email, password });
 }
 
 export async function createUser(userData) {
@@ -40,15 +40,15 @@ export async function updateUser(userId, userData ) {
 }
 
 export async function fetchFilms() {
-  return apiFetch("filmController.php", "GET");
+  return apiFetch("/films", "GET");
 }
 
 export async function createFilm(filmData) {
-  return apiFetch("filmController.php", "POST", filmData );
+  return apiFetch("/films", "POST", filmData );
 }
 
 export async function deleteFilm(filmId) {
-  return apiFetch(`filmController.php?id=${filmId}`, "DELETE", null );
+  return apiFetch(`/films?id=${filmId}`, "DELETE", null );
 }
 
 export async function getSeatLayout(showtimeId) {

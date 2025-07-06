@@ -28,11 +28,21 @@ abstract class Model {
 
     }
 
-       public function delete(mysqli $mysqli){
-        $sql = sprintf("DELETE FROM %s WHERE %s = ?", static::$table, static::$primaryKey);
+        public static function delete(mysqli $mysqli, $id) {
+         $sql = sprintf("DELETE FROM %s WHERE id = ?", 
+                        static::$table,);
+        
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("i", $this->{static::$primaryKey});
-        return $stmt->execute();
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
+    public static function deleteAll(mysqli $mysqli) {
+        $sql = sprintf("DELETE FROM %s", static::$table);
+        $stmt = $mysqli->prepare($sql);
+        $stmt->execute();
+        return $stmt->affected_rows >= 0;
     }
 
     public function update(mysqli $mysqli,array $fields){

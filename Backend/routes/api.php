@@ -39,17 +39,12 @@ $routes = [
         'POST'   => ['controller' => 'SeatController', 'method' => 'reserveSeats'],
     ],
 
-    '/bookings' => [
-        'GET'    => ['controller' => 'BookingController', 'method' => 'getBookings'],
-        'POST'   => ['controller' => 'BookingController', 'method' => 'createBooking'],
-        'DELETE' => ['controller' => 'BookingController', 'method' => 'deleteBooking'],
+    '/admin' => [
+        'GET'    => ['controller' => 'adminController', 'method' => 'getAllAdmins'],
+        'POST'   => ['controller' => 'adminController', 'method' => 'loginAdmin'],
+        'DELETE' => ['controller' => 'adminController', 'method' => 'deleteAdmin'],
     ],
 
-    '/showtimes' => [
-        'GET'    => ['controller' => 'ShowtimeController', 'method' => 'getShowtimes'],
-        'POST'   => ['controller' => 'ShowtimeController', 'method' => 'createShowtime'],
-        'DELETE' => ['controller' => 'ShowtimeController', 'method' => 'deleteShowtime'],
-    ],
 ];
 
 if (isset($routes[$request]) && isset($routes[$request][$method])) {
