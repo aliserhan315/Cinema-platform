@@ -1,28 +1,42 @@
-import { loadAllFilms } from "./Film.js";
+import { fetchFilms } from "./api.js";
+
+const grid = document.querySelector(".movie-grid"); 
+
+const params = new URLSearchParams(window.location.search);
+const filmId = params.get("title");
 
 
- const params = new URLSearchParams(window.location.search);
- const filmId=  params.get("id");
- console.log(filmId);
-  document.getElementById("bookBtn").onclick = () => {
-  localStorage.setItem("selectedFilmId", filmId);
+document.getElementById("bookBtn").onclick = () => {
   window.location.href = "../pages/seat.html";
-  };
-
+};
 
 (async () => {
+  try {
+    const res = await fetchFilms();
+    const films = res.films;
+
+    const selectedFilm = films.find(f => f.title == filmId);
+    if (!selectedFilm) {
+      console.error("Film not found");
+      return;
+    }
+
+    console.log("Selected Film:", selectedFilm);
+
+    document.querySelector(".detail-container").style.backgroundImage = `url('${selectedFilm.background_image}')`;
+    document.getElementById("poster").src = selectedFilm.poster_image;
+    document.getElementById("title").textContent = selectedFilm.title;
+    document.getElementById("description").textContent = selectedFilm.description || '';
+    document.getElementById("releaseDate").textContent = `Release Date: ${selectedFilm.release_date}`;
+    document.getElementById("rating").textContent = `Rating: ${selectedFilm.rating} stars`;
+    document.getElementById("duration").textContent = `Duration: ${selectedFilm.duration} minutes`;
 
 
-
-  const res = await fetchFilms();
-  const f =allFilms.find(f => f.id == filmId);
-  console.log(f);
-  if (!f) return;
-
-  document.querySelector(".detail-container").style.backgroundImage = `url('${f.background_image}')`;
-  document.getElementById("poster").src = f.poster_image;
-  document.getElementById("title").textContent = f.title;
-  document.getElementById("description").textContent = f.description || '';
- 
-  
-});
+  } catch (err) {
+    console.error("Failed to load film details", err);
+  }
+})();
+// document.getElementById("logoutBtn").onclick = () => {
+//   localStorage.clear();
+//   window.location.href = "login.html";
+// };
