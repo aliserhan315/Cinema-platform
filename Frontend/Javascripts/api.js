@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost/Projects/cinema-platform/Backend/controller";
+const API_BASE = "http://localhost/Projects/cinema-platform/Backend";
 
 async function apiFetch(path, method = "GET", body = null) {
   const headers = {
@@ -20,7 +20,7 @@ async function apiFetch(path, method = "GET", body = null) {
 }
 
 export async function userLogin(email, password) {
-  return apiFetch("logIncontroller.php", "POST", { email, password });
+  return apiFetch("/login", "POST", { email, password });
 }
 
 export async function adminLogin(email, password) {
@@ -28,15 +28,15 @@ export async function adminLogin(email, password) {
 }
 
 export async function createUser(userData) {
-  return apiFetch("createUser.php", userData);
+  return apiFetch("/register", "POST", userData);
 }
 
 export async function getUsers() {
-  return apiFetch("getUser.php", "GET");
+  return apiFetch("/users", "GET");
 }
 
 export async function updateUser(userId, userData ) {
-  return apiFetch(`userController.php?id=${userId}`, "PUT", userData );
+  return apiFetch(`/users?id=${userId}`, "PUT", userData );
 }
 
 export async function fetchFilms() {

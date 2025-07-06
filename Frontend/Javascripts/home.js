@@ -42,7 +42,7 @@ function render(arr) {
     `;
     card.onclick = () => {
       localStorage.setItem("selectedFilmId", f.id);
-      window.location.href = `../pages/filmVeiw.html?id=${f.id}`;
+      window.location.href = `../pages/filmVeiw.html?title=${f.title}`;
     };
     grid.appendChild(card);
   });
