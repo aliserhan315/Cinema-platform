@@ -1,13 +1,15 @@
 <?php
-require_once("../connection/connection.php");
-require_once("../models/User.php");
-require_once("./BaseController.php");
-require("../models/Genre.php");
-require_once("../servecies/userService.php");
+
+require_once __DIR__ . '/../connection/connection.php';
+require_once __DIR__ . "/../models/Film.php";
+require_once __DIR__ .  "/../models/Genre.php";
+require_once __DIR__ . "/BaseController.php";
+require_once __DIR__ . "/../services/userService.php";
+require_once __DIR__ . "/../models/User.php";
 
 class UserController extends BaseController {
     
-    public function login(){
+    public function userlogin(){
         global $mysqli;
         try {
             $data = json_decode(file_get_contents("php://input"), true);
@@ -26,8 +28,8 @@ class UserController extends BaseController {
                 throw new Exception("Invalid credentials.");
                 return;
         }   
-            echo $this->success_response( $user->toArray()); 
-        return;
+          echo $this->success_response($user->toArray());
+            return;
 
     } catch (Exception $e) {
         echo $this->error_response( $e->getMessage());

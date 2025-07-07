@@ -21,7 +21,7 @@ async function load() {
   grid.textContent = "Loading...";
   try {
     const res = await fetchFilms();
-    films = res.films;
+    films = res.data;;
     render(films);
   } catch {
     grid.textContent = "Failed to load.";
