@@ -6,7 +6,7 @@ async function apiFetch(path, method = "GET", body = null) {
   };
 
 
-  const response = await fetch(`${API_BASE}/${path}`, {
+  const response = await fetch(`${API_BASE}${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : null,
@@ -24,7 +24,7 @@ export async function userLogin(email, password) {
 }
 
 export async function adminLogin(email, password) {
-  return apiFetch("/admin", "POST", { email, password });
+  return apiFetch("admin", "POST", { email, password });
 }
 
 export async function createUser(userData) {

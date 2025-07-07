@@ -1,9 +1,9 @@
 <?php
 require_once("../connection/connection.php");
 require_once("../models/Film.php");
-require_once __DIR__ . "/../services/ResponseService.php";
-require_once __DIR__ . "/BaseController.php";
-require_once __DIR__ . "../servecies/FilmService.php";
+require ("../services/ResponseService.php");
+require ("./BaseController.php");
+require ("../services/FilmService.php");
 
 class FIlmController extends BaseController {
     function getAllFilms(){

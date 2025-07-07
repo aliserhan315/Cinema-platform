@@ -2,7 +2,7 @@
 require_once("../connection/connection.php");
 require_once("../models/admin.php");
 require_once("./BaseController.php");
-require_once("../servecies/AdminService.php");
+require_once("../services/AdminService.php");
 
 class AdminController extends BaseController {
     public function  getAllAdmins() {

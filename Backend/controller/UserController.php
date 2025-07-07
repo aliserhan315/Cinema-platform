@@ -3,7 +3,7 @@ require_once("../connection/connection.php");
 require_once("../models/User.php");
 require_once("./BaseController.php");
 require("../models/Genre.php");
-require_once("../servecies/userService.php");
+require_once("../services/userService.php");
 
 class UserController extends BaseController {
     
