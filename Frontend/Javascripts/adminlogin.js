@@ -13,9 +13,10 @@ adminLoginForm.addEventListener("submit", async (e) => {
   try {
     const res = await adminLogin(email, password);
     if (res.status === 200) {
+      const admin = res.data[0]; 
       localStorage.setItem("adminLoggedIn", "true"); 
-      localStorage.setItem("adminId", res.admin.id);
-      localStorage.setItem("adminName", res.admin.name);
+      localStorage.setItem("adminId", admin[0]);
+      localStorage.setItem("adminName", admin[1]);
 
    
       window.location.href = "admin.html";

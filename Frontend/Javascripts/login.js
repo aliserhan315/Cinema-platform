@@ -12,12 +12,11 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     const res = await userLogin(email, password);
-    if (res.status === 200) {
-     
-      localStorage.setItem("userLoggedIn", "true");
-      localStorage.setItem("userToken", res.token); 
-      localStorage.setItem("userId", res.user.id);
-      localStorage.setItem("userName", res.user.name);
+        if (res.status === 200) {
+          const User = res.data[0]; 
+          localStorage.setItem("adminLoggedIn", "true"); 
+          localStorage.setItem("UserId", User[0]);
+          localStorage.setItem("UserName", User[1]);
 
       window.location.href = "home.html";
     } else {

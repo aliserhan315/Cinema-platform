@@ -9,7 +9,7 @@ require_once __DIR__ . "/../models/User.php";
 
 class UserController extends BaseController {
     
-    public function login(){
+    public function userlogin(){
         global $mysqli;
         try {
             $data = json_decode(file_get_contents("php://input"), true);
@@ -29,7 +29,7 @@ class UserController extends BaseController {
                 return;
         }   
             echo $this->success_response( $user->toArray()); 
-        return;
+            return;
 
     } catch (Exception $e) {
         echo $this->error_response( $e->getMessage());

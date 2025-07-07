@@ -7,7 +7,7 @@ class ResponseService {
         return json_encode([
             "status" => 200,
             "data" => $data,
-            "message" => "Request was successful"
+           
         ]);
        
     }

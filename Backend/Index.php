@@ -14,9 +14,7 @@ if ($request == '') {
 $method = $_SERVER['REQUEST_METHOD'];
 
 $apis = [
-    '/login' => [
-        'POST' => ['controller' => 'UserController', 'method' => 'login'],
-    ],
+
     '/register' => [
         'POST' => ['controller' => 'UserController', 'method' => 'createUser'],
     ],
@@ -24,6 +22,7 @@ $apis = [
         'GET'    => ['controller' => 'UserController', 'method' => 'getUser'],
         'PUT'    => ['controller' => 'UserController', 'method' => 'updateUser'],
         'DELETE' => ['controller' => 'UserController', 'method' => 'deleteUser'],
+        'POST'   => ['controller' => 'UserController', 'method' => 'userlogin'],
     ],
     '/films' => [
         'GET'    => ['controller' => 'FilmController', 'method' => 'getAllFilms'],
