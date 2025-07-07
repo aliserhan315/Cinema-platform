@@ -3,6 +3,7 @@
 class ResponseService {
 
     public function success_response($data) {
+        header("Content-Type: application/json");
      
         return json_encode([
             "status" => 200,
@@ -12,6 +13,7 @@ class ResponseService {
        
     }
     public function error_response($message){
+        header("Content-Type: application/json");
         
         return json_encode([
             "status" => 500,

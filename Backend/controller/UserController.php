@@ -28,7 +28,7 @@ class UserController extends BaseController {
                 throw new Exception("Invalid credentials.");
                 return;
         }   
-            echo $this->success_response( $user->toArray()); 
+          echo $this->success_response($user->toArray());
             return;
 
     } catch (Exception $e) {
