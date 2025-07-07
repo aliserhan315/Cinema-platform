@@ -1,9 +1,11 @@
 <?php
-require_once("../connection/connection.php");
-require_once("../models/User.php");
-require_once("./BaseController.php");
-require("../models/Genre.php");
-require_once("../services/userService.php");
+
+require_once __DIR__ . '/../connection/connection.php';
+require_once __DIR__ . "/../models/Film.php";
+require_once __DIR__ .  "/../models/Genre.php";
+require_once __DIR__ . "/BaseController.php";
+require_once __DIR__ . "/../services/userService.php";
+require_once __DIR__ . "/../models/User.php";
 
 class UserController extends BaseController {
     

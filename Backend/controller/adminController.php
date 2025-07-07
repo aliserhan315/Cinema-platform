@@ -1,8 +1,9 @@
 <?php
-require_once("../connection/connection.php");
-require_once("../models/admin.php");
-require_once("./BaseController.php");
-require_once("../services/AdminService.php");
+require_once __DIR__ . '/../connection/connection.php';
+require_once __DIR__ .  "/../models/Genre.php";
+require_once __DIR__ . "/BaseController.php";
+require_once __DIR__ . "/../services/AdminService.php";
+require_once __DIR__ . "/../models/Admin.php";
 
 class AdminController extends BaseController {
     public function  getAllAdmins() {
