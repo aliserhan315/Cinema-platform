@@ -9,11 +9,14 @@ const filmId = params.get("title");
 document.getElementById("bookBtn").onclick = () => {
   window.location.href = "../pages/seat.html";
 };
+         
 
 (async () => {
   try {
     const res = await fetchFilms();
-    const films = res.films;
+    console.log("Fetched Films:", res);
+
+    const films = res.data;
 
     const selectedFilm = films.find(f => f.title == filmId);
     if (!selectedFilm) {

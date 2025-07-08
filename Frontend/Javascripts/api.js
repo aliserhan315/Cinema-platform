@@ -36,7 +36,7 @@ export async function getUsers() {
 }
 
 export async function updateUser(userId, userData) {
-  return apiFetch(`userController.php?id=${userId}`, "PUT", userData);
+  return apiFetch(`users?id=${userId}`, "PUT", userData);
 }
 
 export async function fetchFilms() {
@@ -44,11 +44,11 @@ export async function fetchFilms() {
 }
 
 export async function createFilm( filmData) {
-  return apiFetch("filmController.php", "POST", filmData);
+  return apiFetch("films", "POST", filmData);
 }
 
 export async function deleteFilm( filmId) {
-  return apiFetch(`filmController.php?id=${filmId}`, "DELETE", null);
+  return apiFetch(`films?id=${filmId}`, "DELETE", null);
 }
 
 export async function getSeatLayout(showtimeId) {

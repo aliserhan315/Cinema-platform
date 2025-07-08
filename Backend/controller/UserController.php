@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../connection/connection.php';
-require_once __DIR__ . "/../models/Film.php";
 require_once __DIR__ .  "/../models/Genre.php";
 require_once __DIR__ . "/BaseController.php";
 require_once __DIR__ . "/../services/userService.php";
@@ -12,30 +11,24 @@ class UserController extends BaseController {
     public function userlogin(){
         global $mysqli;
         try {
-            $data = json_decode(file_get_contents("php://input"), true);
-            
-            if (!$data || !isset($data["email"], $data["password"])) {
-                throw new Exception("Invalid input.");
+           $data = json_decode(file_get_contents("php://input"), true);
+             if (!isset($data["email"], $data["password"])) {
+                  throw new Exception('Missing required fields');
+                }
+            $user = User::findByEmail($mysqli, $data['email']);
+            if (!$user || $data['password'] !== $user->getPassword()) {
+                throw new Exception('Invalid credentials.');
+            }
+
+             
+            echo $this->success_response($user->toArray());
+        
+
+        }catch (Exception $e) {
+            echo $this->error_response($e->getMessage());
         }
-
-            $user = User::findByEmail($mysqli, $data["email"]);
-            if (!$user) {
-                throw new Exception("Invalid credentials.");
-                return;
-        }
-
-            if (!password_verify($data["password"], $user->getPassword())) {
-                throw new Exception("Invalid credentials.");
-                return;
-        }   
-          echo $this->success_response($user->toArray());
-            return;
-
-    } catch (Exception $e) {
-        echo $this->error_response( $e->getMessage());
     }
- 
-}
+
 
     function getUser() {
         global $mysqli;
@@ -93,7 +86,7 @@ class UserController extends BaseController {
         $user = User::create($mysqli, $fields);
 
     if ($user) {
-        echo $this->success_response($user->toArray());
+        echo $this->success_response($user->toArray(),201);
     }
     }catch (Exception $e) {
         echo $this->error_response($e->getMessage());
