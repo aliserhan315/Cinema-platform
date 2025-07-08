@@ -16,7 +16,7 @@ class UserController extends BaseController {
                   throw new Exception('Missing required fields');
                 }
             $user = User::findByEmail($mysqli, $data['email']);
-            if (!$user || $data['password'] !== $user->getPassword()) {
+            if (!$user || !password_verify($data['password'], $user->getPassword())) {
                 throw new Exception('Invalid credentials.');
             }
 

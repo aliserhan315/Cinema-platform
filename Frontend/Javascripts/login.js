@@ -1,12 +1,12 @@
-import { userLogin } from "./api.js";
+import { userLogin } from "./api";
 
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = e.target.adminEmail.value.trim();
-  const password = e.target.adminPassword.value.trim();
+  const email = e.target.email.value.trim();
+  const password = e.target.password.value.trim();
   const errorElem = document.getElementById("LoginError");
 
 
