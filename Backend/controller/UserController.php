@@ -86,7 +86,7 @@ class UserController extends BaseController {
         $user = User::create($mysqli, $fields);
 
     if ($user) {
-        echo $this->success_response($user->toArray());
+        echo $this->success_response($user->toArray(),201);
     }
     }catch (Exception $e) {
         echo $this->error_response($e->getMessage());
