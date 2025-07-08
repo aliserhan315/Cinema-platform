@@ -42,6 +42,9 @@ export async function updateUser(userId, userData) {
 export async function fetchFilms() {
   return apiFetch("films", "GET");
 }
+export async function fetchFilmsname(filmname) {
+  return apiFetch(`films?name=${filmname}`, "GET");
+}
 
 export async function createFilm( filmData) {
   return apiFetch("films", "POST", filmData);

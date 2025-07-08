@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", async (e) => {
     const res = await userLogin(email, password);
     if (res.status === 200) {
       const admin = res.data[0]; 
-      localStorage.setItem("LoggedIn", "true"); 
+      localStorage.setItem("userLoggedIn", "true"); 
       localStorage.setItem("UserId", admin[0]);
       localStorage.setItem("UserName", admin[1]);
 
